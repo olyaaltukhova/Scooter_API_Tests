@@ -1,6 +1,8 @@
 import requests
 
-BASE_URL = "https://88e64e5d-96ce-4308-b5b5-3d4925acbc94.serverhub.praktikum-services.ru"
+# Ольга Алтухова, 44-я когорта — Финальный проект. Инженер по тестированию плюс
+
+BASE_URL = "https://69e0973e-4222-470b-8dee-74efdde87fed.serverhub.praktikum-services.ru"
 
 def test_create_and_get_order():
     order_data = {
