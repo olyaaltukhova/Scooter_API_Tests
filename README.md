@@ -22,5 +22,6 @@ python test_order.py
 Заказ создан. Трек: <номер>
 Заказ получен по треку <номер>
 
-![alt text](image.png)
+![alt text](image-1.png)
+
 
