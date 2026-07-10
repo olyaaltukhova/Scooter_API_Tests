@@ -1,36 +1,20 @@
-import requests
+# Ольга Алтухова, 44-я когорта – Финальный проект. Инженер по тестированию плюс
 
-# Ольга Алтухова, 44-я когорта — Финальный проект. Инженер по тестированию плюс
-
-BASE_URL = "https://69e0973e-4222-470b-8dee-74efdde87fed.serverhub.praktikum-services.ru"
+from data import get_order_data
+from order_functions import create_order, get_order_by_track
 
 def test_create_and_get_order():
-    order_data = {
-        "firstName": "Ольга",
-        "lastName": "Зима",
-        "address": "ул. Центральная, 1",
-        "metroStation": 4,
-        "phone": "+79001234567",
-        "rentTime": 1,
-        "deliveryDate": "2026-07-12",
-        "comment": "Тестовый заказ",
-        "color": ["BLACK"]
-    }
-    
-    # 1. Выполняем запрос на создание заказа
-    create_response = requests.post(f"{BASE_URL}/api/v1/orders", json=order_data)
+    order_data = get_order_data()
+
+    create_response = create_order(order_data)
     assert create_response.status_code == 201, f"Ожидался 201, получен {create_response.status_code}"
-    
-    # 2. Сохраняем номер трека заказа
+
     track = create_response.json().get("track")
     print(f"Заказ создан. Трек: {track}")
-    
-    # 3. Выполняем запрос на получение заказа по треку заказа
-    get_response = requests.get(f"{BASE_URL}/api/v1/orders/track", params={"t": track})
-    
-    # 4. Проверяем, что код ответа равен 200
+
+    get_response = get_order_by_track(track)
     assert get_response.status_code == 200, f"Ожидался 200, получен {get_response.status_code}"
-    
+
     print(f"Заказ получен по треку {track}")
 
 if __name__ == "__main__":
