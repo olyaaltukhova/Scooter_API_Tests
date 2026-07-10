@@ -35,7 +35,7 @@ python test_order.py
 # Работа с базой данных
 
 ## Задание 1. Список курьеров с заказами в доставке
-Запрос:
+#### Запрос:
 ```sql
 SELECT
     c.login,
@@ -44,15 +44,16 @@ FROM "Couriers" AS c
 JOIN "Orders" AS o ON c.id = o."courierId"
 WHERE o."inDelivery" = true
 GROUP BY c.login;
-
-Результат: 
+```
+#### Результат: 
+```sql
 login   deliveryCount 
 3333    6
 ```
 Вывод: у курьера с логином 3333 есть 6 заказов в статусе «В доставке».
 
 ## Задание 2. Трекеры заказов и их статусы
-Запрос:
+#### Запрос:
 ```sql
 SELECT
     track,
@@ -63,9 +64,11 @@ SELECT
         ELSE 0
     END AS status
 FROM "Orders";
+```
 
-Результат:
+#### Результат:
 
+```sql
 track	status
 612064	0
 880871	0
@@ -84,4 +87,7 @@ track	status
 2	Завершён
 -1	Отменён
 ```
+
 Вывод: статусы заказов в базе данных определяются корректно.
+
+![alt text](image-1.png)
